@@ -7,8 +7,7 @@ on:
     types:
       - completed
 
-permissions:
-  checks: write
+permissions: write-all
 
 jobs:
   checks:
