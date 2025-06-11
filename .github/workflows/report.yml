@@ -19,7 +19,7 @@ jobs:
         with:
           name: testreports
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
-          run_id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ github.event.workflow_run.id }}
       - name: Publish Test Results
         uses: mikepenz/action-junit-report@v5
         if: success() || failure()
