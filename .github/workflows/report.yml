@@ -16,9 +16,10 @@ jobs:
       - name: Download Test Report
         uses: actions/download-artifact@v4
         with:
-        #   name: testreports
+          name: testreports
           repository: ${{ github.event.workflow_run.head_repository.full_name }}
           run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Test Results
         uses: mikepenz/action-junit-report@v5
         if: success() || failure()
