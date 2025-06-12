@@ -7,9 +7,9 @@ on:
     types:
       - completed
 
-permissions: write-all
-#   checks: write
-#   pull-requests: write
+permissions: # write-all
+  checks: write
+  pull-requests: write
 #   id-token: write
 #   issues: write
 
