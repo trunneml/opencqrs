@@ -36,6 +36,29 @@ public final class ClientRequestErrorMapper {
      * @throws ClientException if none of the aforementioned (for internal use only)
      */
     public <T> T handleMappingExceptionsIfNecessary(Supplier<T> handler) throws CqrsFrameworkException {
-        return null;
+        try {
+            return handler.get();
+        } catch (ClientException.InvalidUsageException e) {
+            throw new CqrsFrameworkException.NonTransientException("invalid usage of client api", e);
+        } catch (ClientException.MarshallingException e) {
+            throw new CqrsFrameworkException.NonTransientException("marshalling error", e);
+        } catch (ClientException.TransportException e) {
+            throw new CqrsFrameworkException.TransientException("communication error", e);
+        } catch (ClientException.InterruptedException e) {
+            throw new ClientInterruptedException("client interrupted", e);
+        } catch (ClientException.HttpException.HttpServerException e) {
+            throw new CqrsFrameworkException.TransientException("http server error", e);
+        } catch (ClientException.HttpException.HttpClientException e) {
+            switch (e.getStatusCode()) {
+                case 408:
+                    throw new CqrsFrameworkException.TransientException("http request timeout", e);
+                case 409:
+                    throw new ConcurrencyException("concurrency error", e);
+                default:
+                    throw new CqrsFrameworkException.NonTransientException("http client error", e);
+            }
+        } catch (ClientException.HttpException e) {
+            throw new CqrsFrameworkException.NonTransientException("unhandled http status", e);
+        }
     }
 }
