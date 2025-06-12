@@ -7,22 +7,22 @@ on:
     types:
       - completed
 
-permissions:
-  checks: write
-  pull-requests: write
-  id-token: write
-  issues: write
+permissions: write-all
+#   checks: write
+#   pull-requests: write
+#   id-token: write
+#   issues: write
 
-  actions: read
-  attestations: read
-  contents: read
-  deployments: read
-#   models: read
-#   discussions: read|write|none
-  packages: read
-#   pages: read|write|none
-  security-events: read
-  statuses: read
+#   actions: read
+#   attestations: read
+#   contents: read
+#   deployments: read
+# #   models: read
+# #   discussions: read|write|none
+#   packages: read
+# #   pages: read|write|none
+#   security-events: read
+#   statuses: read
 
 jobs:
   checks:
