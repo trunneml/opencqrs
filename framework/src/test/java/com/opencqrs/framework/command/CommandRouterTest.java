@@ -149,7 +149,7 @@ public class CommandRouterTest {
                 Book.class, BorrowBookCommand.class, (CommandHandler.ForInstanceAndCommandAndMetaData<
                                 Book, BorrowBookCommand, UUID>)
                         (book, cmd, metaData, eventPublisher) -> {
-                            assertThat(book).isEqualTo(new Book("4711", false));
+                            assertThat(book).isEqualTo(new Book("4711", true));
                             assertThat(cmd).isEqualTo(command);
                             assertThat(metaData).isEqualTo(commandMetaData);
 
