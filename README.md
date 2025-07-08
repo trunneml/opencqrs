@@ -139,6 +139,12 @@ public class BookCatalogProjector {
 }
 ```
 
+### Looking for runnable examples?
+
+Check out our [OpenCQRS Sample Applications](https://github.com/open-cqrs/opencqrs-samples) repository.  
+It provides working example projects that demonstrate how to build applications using OpenCQRS.
+
+
 ## Project Contents
 
 This is a multi-module project. It contains the following modules:
