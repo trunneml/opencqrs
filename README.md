@@ -1,6 +1,7 @@
 # OpenCQRS - Java CQRS Framework for the [EventSourcingDB](https://www.eventsourcingdb.io)
 
 <!-- BADGES_START -->
+[![Maven](https://img.shields.io/maven-metadata/v.svg?color=yellow&label=Maven%20Central&logo=apachemaven&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fopencqrs%2Fframework%2Fmaven-metadata.xml)](https://central.sonatype.com/namespace/com.opencqrs)
 [![Java](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fopen-cqrs%2Fopencqrs%2Frefs%2Fheads%2Fgh-pages%2Fbadges%2Fjdk.json)](https://openjdk.org)
 [![EventSourcingDB](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fopen-cqrs%2Fopencqrs%2Frefs%2Fheads%2Fgh-pages%2Fbadges%2Fesdb.json)](https://www.eventsourcingdb.io)
 [![Spring Boot](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fopen-cqrs%2Fopencqrs%2Frefs%2Fheads%2Fgh-pages%2Fbadges%2Fspring.json)](https://spring.io/projects/spring-boot)
