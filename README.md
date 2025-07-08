@@ -70,6 +70,7 @@ Define annotation based command handlers for implementing business logic and pub
 
 ```java
 public record PurchaseBookCommand(String isbn, String author, String title, long numPages) implements Command {
+
     @Override
     default String getSubject() {
         return "/book/" + isbn();
