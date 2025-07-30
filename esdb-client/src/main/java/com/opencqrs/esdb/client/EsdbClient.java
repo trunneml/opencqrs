@@ -132,25 +132,7 @@ public final class EsdbClient implements AutoCloseable {
 
         var response = httpRequestErrorHandler.handle(
                 httpRequest, headers -> HttpResponse.BodySubscribers.ofString(Util.fromHttpHeaders(headers)));
-        List<Event> fromWriteEventsResponse = marshaller.fromWriteEventsResponse(response);
-        return IntStream.range(0, fromWriteEventsResponse.size())
-                .mapToObj(index -> {
-                    var eventCandidate = eventCandidates.get(index);
-                    var eventResponse = fromWriteEventsResponse.get(index);
-
-                    return new Event(
-                            eventResponse.source(),
-                            eventResponse.subject(),
-                            eventResponse.type(),
-                            eventResponse.data(),
-                            eventResponse.specVersion(),
-                            eventResponse.id(),
-                            eventResponse.time(),
-                            eventResponse.dataContentType(),
-                            eventResponse.hash(),
-                            eventResponse.predecessorHash());
-                })
-                .toList();
+        return marshaller.fromWriteEventsResponse(response);
     }
 
     /**
