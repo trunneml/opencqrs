@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.concurrent.Flow;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /** Client SDK for the <a href="https://www.eventsourcingdb.io">EventSourcingDB</a>. */
 public final class EsdbClient implements AutoCloseable {
@@ -33,6 +32,9 @@ public final class EsdbClient implements AutoCloseable {
             Option.LowerBoundInclusive.class,
             Option.LowerBoundExclusive.class,
             Option.FromLatestEvent.class);
+
+    public static final String EVENT_TYPE_PING_RECEIVED = "io.eventsourcingdb.api.ping-received";
+    public static final String EVENT_TYPE_API_TOKEN_VERIFIED = "io.eventsourcingdb.api.api-token-verified";
 
     private final URI serverUri;
     private final String accessToken;
@@ -63,8 +65,8 @@ public final class EsdbClient implements AutoCloseable {
         var response = httpRequestErrorHandler.handle(
                 httpRequest, headers -> HttpResponse.BodySubscribers.ofString(Util.fromHttpHeaders(headers)));
 
-        if (!"io.eventsourcingdb.api.ping-received"
-                .equals(marshaller.fromJsonResponse(response).get("type"))) {
+        if (!EVENT_TYPE_PING_RECEIVED.equals(
+                marshaller.fromJsonResponse(response).get("type"))) {
             throw new ClientException.HttpException.HttpClientException("no ping received", 200);
         }
     }
@@ -86,8 +88,8 @@ public final class EsdbClient implements AutoCloseable {
         var response = httpRequestErrorHandler.handle(
                 httpRequest, headers -> HttpResponse.BodySubscribers.ofString(Util.fromHttpHeaders(headers)));
 
-        if (!"io.eventsourcingdb.api.api-token-verified"
-                .equals(marshaller.fromJsonResponse(response).get("type"))) {
+        if (!EVENT_TYPE_API_TOKEN_VERIFIED.equals(
+                marshaller.fromJsonResponse(response).get("type"))) {
             throw new ClientException.HttpException.HttpClientException("api token could not be verified", 200);
         }
     }
